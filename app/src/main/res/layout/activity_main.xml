@@ -5,47 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    
     <Button
-        android:id="@+id/alleBier"
+        android:id="@+id/Listbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="31dp"
         android:layout_marginTop="436dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="27dp"
-        android:text="Toon Bier"
+        android:text="Bierlijst"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/Firebasebutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Firebasebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="436dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="27dp"
-        android:text="Button"
+        android:text="Firebase"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/alleBier"
+        app:layout_constraintEnd_toStartOf="@+id/Grafiekbutton"
+        app:layout_constraintStart_toEndOf="@+id/Listbutton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Grafiekbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="436dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="26dp"
         android:layout_marginBottom="27dp"
-        android:text="Button"
+        android:text="Grafiekjes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/Firebasebutton"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
