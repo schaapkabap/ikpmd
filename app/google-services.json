@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1031308988237",
+    "firebase_url": "https://ikpmd-2a574.firebaseio.com",
+    "project_id": "ikpmd-2a574",
+    "storage_bucket": "ikpmd-2a574.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031308988237:android:808fb672f6d54f42",
+        "android_client_info": {
+          "package_name": "com.example.schaapkabap.biercollection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031308988237-uod9obub0f84fo96693ka9n7k196ac1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxN5rBzEpI4z9cqe4wLl_cdRDg7b2YCTc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
