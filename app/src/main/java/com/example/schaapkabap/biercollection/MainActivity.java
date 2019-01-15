@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.example.schaapkabap.biercollection.activitys.ItemListActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         Bierlist.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Log.d("Bierbutton ingedrukt", "start Bierlist");
-                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.Bierlist.class));
+                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.ItemListActivity.class));
             }
         });
 
         Firebase.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Log.d("Firebasebutton ingedrukt", "start Firebase");
-                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.Firebase.class));
+                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.CardActivity.class));
             }
         });
 
