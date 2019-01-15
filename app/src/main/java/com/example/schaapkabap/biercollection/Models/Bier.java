@@ -3,61 +3,60 @@ package com.example.schaapkabap.biercollection.Models;
 import java.io.Serializable;
 
 public class Bier {
-    private String naam;
-    private String brouwerij_type;
-    private String stad;
-    private String staat;
-    private String telefoonnummer;
+    private String name;
+    private String brewery_type;
+    private String city;
+    private String state;
+    private String phone;
 
-    public Bier(String naam, String brouwerij_type, String stad, String staat, String telefoonnummer) {
-        this.naam = naam;
-        this.brouwerij_type = brouwerij_type;
-        this.stad = stad;
-        this.staat = staat;
-        this.telefoonnummer = telefoonnummer;
+    public Bier(String name, String brewery_type, String city, String state, String phone) {
+        this.name = name;
+        this.brewery_type = brewery_type;
+        this.city = city;
+        this.state = state;
+        this.phone = phone;
     }
 
-    public Bier(){
-
+    public Bier() {
     }
 
-    public String getNaam() {
-        return naam;
+    public String getName() {
+        return name;
     }
 
-    public void setNaam(String naam) {
-        this.naam = naam;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBrouwerij_type() {
-        return brouwerij_type;
+    public String getBrewery_type() {
+        return brewery_type;
     }
 
-    public void setBrouwerij_type(String brouwerij_type) {
-        this.brouwerij_type = brouwerij_type;
+    public void setBrewery_type(String brewery_type) {
+        this.brewery_type = brewery_type;
     }
 
-    public String getStad() {
-        return stad;
+    public String getCity() {
+        return city;
     }
 
-    public void setStad(String stad) {
-        this.stad = stad;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getStaat() {
-        return staat;
+    public String getState() {
+        return state;
     }
 
-    public void setStaat(String staat) {
-        this.staat = staat;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getTelefoonnummer() {
-        return telefoonnummer;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelefoonnummer(String telefoonnummer) {
-        this.telefoonnummer = telefoonnummer;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
