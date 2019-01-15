@@ -68,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="1-10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:autofillHints="" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

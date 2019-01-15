@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.schaapkabap.biercollection.MainActivity;
 import com.example.schaapkabap.biercollection.Models.Bier;
 import com.example.schaapkabap.biercollection.R;
+import com.example.schaapkabap.biercollection.helpers.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,13 +32,12 @@ public class Firebase extends AppCompatActivity {
         recensie.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Log.d("recensiebutton ingedrukt", "stuur de data");
-                DatabaseReference usersRef = ref.child("Bier");
 
-                Map<String, Bier> Biers = new HashMap<>();
-                Biers.put("brouwer1", new Bier("Biertastisch" , "klein" ,"new york", "weg", "0238-42532422"));
-                Biers.put("brouwer2", new Bier("Biertastisch2" , "klein2" ,"new york2", "weg2", "0238-42532422(2)"));
 
-                usersRef.setValue(Biers);
+                Bier bier1 = new Bier("Biertastisch" , "klein" ,"new york", "weg", "0238-42532422");
+                FirebaseHelper.getInstance().addData(bier1);
+                FirebaseHelper.getInstance().getData("Biertastisch");
+
 
             }
         });

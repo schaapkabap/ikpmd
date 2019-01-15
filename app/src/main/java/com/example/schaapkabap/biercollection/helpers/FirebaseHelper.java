@@ -1,20 +1,34 @@
 package com.example.schaapkabap.biercollection.helpers;
 
+import android.support.annotation.NonNull;
+import android.telecom.Call;
+import android.util.Log;
+
 import com.example.schaapkabap.biercollection.Models.Bier;
 import com.example.schaapkabap.biercollection.activitys.Firebase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class FirebaseHelper {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+public class FirebaseHelper implements Callback {
 
     private static FirebaseHelper firebaseHelper;
-    private String Uri;
-    private DatabaseReference reference;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("biers");
+    DatabaseReference usersRef = ref.child("Bier");
+    private Bier bier;
 
 
+    /**
+     *
+     */
     public FirebaseHelper() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("server/saving-data/fireblog");
     }
 
     public static synchronized FirebaseHelper getInstance() {
@@ -26,23 +40,56 @@ public class FirebaseHelper {
     public void setData(Bier bier) {
 
         getJson(bier);
-        // Get the root reference location of the database.
-
-
     }
 
+    /**
+     * @param bier
+     */
     public void addData(Bier bier) {
-//        bier
-//        mDatabaseRef.Child("users").Child(userId).SetRawJsonValueAsync(json);
+        Map<String, Bier> biers = new HashMap<>();
+        biers.put(bier.getNaam(), bier);
+        usersRef.setValue(biers);
+        biers.clear();
 
     }
 
-    public Bier getData() {
+    public Bier getData(String bierBrouwerij) {
+        DatabaseReference bier= usersRef.child(bierBrouwerij);
+        Callback callback =new MyCallback();
+        callData(bier, callback);
+
+
+
         return null;
     }
 
-    private String getJson(Bier bier) {
+    private void callData(DatabaseReference data, Callback mycallback){
 
-        return null;
+        data.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                bier.setStad(dataSnapshot.child("stad").getValue().toString());
+                bier.setTelefoonnummer(dataSnapshot.child("telefoonnummer").getValue().toString());
+                bier.setStaat(dataSnapshot.child("staat").getValue().toString());
+                bier.setBrouwerij_type(dataSnapshot.child("brouwerij_type").getValue().toString());
+//                mycallback.onCallback(bier);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getJson(Bier bier) {
+
+    }
+
+    @Override
+    public void onCallback(Object object) {
+
     }
 }

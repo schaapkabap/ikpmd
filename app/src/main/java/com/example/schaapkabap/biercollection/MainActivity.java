@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Log.d("Firebasebutton ingedrukt", "start Firebase");
-                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.Bierlist.class));
+                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.CardActivity.class));
             }
         });
 
