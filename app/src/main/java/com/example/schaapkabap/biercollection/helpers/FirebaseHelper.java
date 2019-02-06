@@ -16,13 +16,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class FirebaseHelper implements Callback {
+public class FirebaseHelper {
 
     private static FirebaseHelper firebaseHelper;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("biers");
     DatabaseReference usersRef = ref.child("Bier");
+    DatabaseReference data = ref.child("Bier");
+
     private Bier bier;
+
 
 
     /**
@@ -54,16 +57,33 @@ public class FirebaseHelper implements Callback {
     }
 
     public Bier getData(String bierBrouwerij) {
-        DatabaseReference bier= usersRef.child(bierBrouwerij);
-        Callback callback =new MyCallback();
-        callData(bier, callback);
+        DatabaseReference bier = usersRef.child(bierBrouwerij);
+        Callback callback = new MyCallback();
+        readData(new FirebaseCallback() {
 
+            @Override
+            public void onCallback(Object object) {
+                Log.d( "test", object.toString());
+            }
+
+        });
+        callData(bier, callback);
 
 
         return null;
     }
 
-    private void callData(DatabaseReference data, Callback mycallback){
+    private void callData(DatabaseReference data, Callback mycallback) {
+
+
+    }
+
+    private void getJson(Bier bier) {
+
+    }
+
+
+    private void readData(FirebaseCallback firebaseCallback) {
 
         data.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -73,7 +93,8 @@ public class FirebaseHelper implements Callback {
                 bier.setTelefoonnummer(dataSnapshot.child("telefoonnummer").getValue().toString());
                 bier.setStaat(dataSnapshot.child("staat").getValue().toString());
                 bier.setBrouwerij_type(dataSnapshot.child("brouwerij_type").getValue().toString());
-//                mycallback.onCallback(bier);
+                FirebaseCallback.onCallback(bier);
+
             }
 
             @Override
@@ -84,12 +105,7 @@ public class FirebaseHelper implements Callback {
 
     }
 
-    private void getJson(Bier bier) {
-
-    }
-
-    @Override
-    public void onCallback(Object object) {
-
+    private interface FirebaseCallback {
+        void onCallback(Object object);
     }
 }

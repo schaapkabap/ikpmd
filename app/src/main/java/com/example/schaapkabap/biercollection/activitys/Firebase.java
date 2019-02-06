@@ -29,12 +29,12 @@ public class Firebase extends AppCompatActivity {
 
         Button recensie = (Button) findViewById(R.id.recensiebutton);
 
-        recensie.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        recensie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Log.d("recensiebutton ingedrukt", "stuur de data");
 
 
-                Bier bier1 = new Bier("Biertastisch" , "klein" ,"new york", "weg", "0238-42532422");
+                Bier bier1 = new Bier("Biertastisch", "klein", "new york", "weg", "0238-42532422");
                 FirebaseHelper.getInstance().addData(bier1);
                 FirebaseHelper.getInstance().getData("Biertastisch");
 
@@ -43,4 +43,7 @@ public class Firebase extends AppCompatActivity {
         });
     }
 
+
 }
+
+
