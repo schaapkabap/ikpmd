@@ -47,7 +47,7 @@ public class FirebaseHelper implements Callback {
      */
     public void addData(Bier bier) {
         Map<String, Bier> biers = new HashMap<>();
-        biers.put(bier.getNaam(), bier);
+        biers.put(bier.getName(), bier);
         usersRef.setValue(biers);
         biers.clear();
 
@@ -69,10 +69,10 @@ public class FirebaseHelper implements Callback {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                bier.setStad(dataSnapshot.child("stad").getValue().toString());
-                bier.setTelefoonnummer(dataSnapshot.child("telefoonnummer").getValue().toString());
-                bier.setStaat(dataSnapshot.child("staat").getValue().toString());
-                bier.setBrouwerij_type(dataSnapshot.child("brouwerij_type").getValue().toString());
+                bier.setCity(dataSnapshot.child("stad").getValue().toString());
+                bier.setPhone(dataSnapshot.child("telefoonnummer").getValue().toString());
+                bier.setState(dataSnapshot.child("staat").getValue().toString());
+                bier.setBrewery_type(dataSnapshot.child("brouwerij_type").getValue().toString());
 //                mycallback.onCallback(bier);
             }
 

@@ -29,20 +29,14 @@ public class Baractivity extends AppCompatActivity {
         // mChart.se
 
         mChart.setDrawOrder(new CombinedChart.DrawOrder[]{
-                CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.LINE
+                CombinedChart.DrawOrder.BAR
         });
 
         setData();
     }
 
     private void setData() {
-        LineData line = new LineData();
-        ArrayList<Entry> lineEntries = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lineEntries.add(new Entry((float) Math.random() * 15, i));
-        }
-        LineDataSet lineDataSet = new LineDataSet(lineEntries, "Line DataSet");
-        line.addDataSet(lineDataSet);
+
 
         BarData bar = new BarData();
         ArrayList<BarEntry> barEntries = new ArrayList<BarEntry>();
@@ -56,7 +50,6 @@ public class Baractivity extends AppCompatActivity {
         //String[] xValues = {"x1","x2","x3","x4","x5","x6","x7","x8","x9","x10"};
         CombinedData data = new CombinedData();
         //data.setData(xValues);
-        data.setData(line);
         data.setData(bar);
         mChart.setData(data);
         mChart.invalidate();
