@@ -2,6 +2,7 @@ package com.example.schaapkabap.biercollection;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Log.d("Firebasebutton ingedrukt", "start Firebase");
-                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.CardActivity.class));
+                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.Firebase.class));
             }
         });
 
