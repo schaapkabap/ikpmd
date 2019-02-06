@@ -73,6 +73,7 @@ public class FirebaseHelper {
         dbRefercence.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 Bier bier = new Bier();
                 bier.setStad(dataSnapshot.child("stad").getValue().toString());
                 bier.setTelefoonnummer(dataSnapshot.child("telefoonnummer").getValue().toString());

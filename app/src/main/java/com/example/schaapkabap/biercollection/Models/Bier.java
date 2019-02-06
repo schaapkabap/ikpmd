@@ -3,29 +3,37 @@ package com.example.schaapkabap.biercollection.Models;
 import java.io.Serializable;
 
 public class Bier {
-    private String name;
     private String brewery_type;
+    private String street;
     private String city;
     private String state;
     private String phone;
+    private String postal_code;
+    private String country;
+    private String longitude;
+    private int id;
+    private String latitude;
+    private String website_url;
+    private String updated_at;
+    private String name;
 
-    public Bier(String name, String brewery_type, String city, String state, String phone) {
-        this.name = name;
+    public Bier(String brewery_type, String street, String city, String state, String phone, String postal_code, String country, String longitude, int id, String latitude, String website_url, String updated_at, String name) {
         this.brewery_type = brewery_type;
+        this.street = street;
         this.city = city;
         this.state = state;
         this.phone = phone;
+        this.postal_code = postal_code;
+        this.country = country;
+        this.longitude = longitude;
+        this.id = id;
+        this.latitude = latitude;
+        this.website_url = website_url;
+        this.updated_at = updated_at;
+        this.name = name;
     }
 
     public Bier() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getBrewery_type() {
@@ -34,6 +42,14 @@ public class Bier {
 
     public void setBrewery_type(String brewery_type) {
         this.brewery_type = brewery_type;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getCity() {
@@ -59,4 +75,70 @@ public class Bier {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getPostal_code() {
+        return postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getWebsite_url() {
+        return website_url;
+    }
+
+    public void setWebsite_url(String website_url) {
+        this.website_url = website_url;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+
+
