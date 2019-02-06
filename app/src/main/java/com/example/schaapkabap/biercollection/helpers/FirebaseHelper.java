@@ -48,7 +48,7 @@ public class FirebaseHelper {
      */
     public void addData(Bier bier) {
         Map<String, Bier> biers = new HashMap<>();
-        biers.put(bier.getNaam(), bier);
+        biers.put(bier.getName(), bier);
         usersRef.setValue(biers);
         biers.clear();
 
