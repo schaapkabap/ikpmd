@@ -1,9 +1,7 @@
 package com.example.schaapkabap.biercollection.helpers;
 
+import com.example.schaapkabap.biercollection.Models.Bier;
 
-class MyCallback implements Callback {
-    @Override
-    public void onCallback(Object object) {
-
-    }
+public interface MyCallback {
+    void onCallback(Bier value);
 }

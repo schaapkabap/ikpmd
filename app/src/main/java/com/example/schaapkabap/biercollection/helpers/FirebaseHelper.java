@@ -12,17 +12,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class FirebaseHelper implements Callback {
+public class FirebaseHelper {
 
     private static FirebaseHelper firebaseHelper;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("biers");
     DatabaseReference usersRef = ref.child("Bier");
-    private Bier bier;
+    DatabaseReference data = ref.child("Bier");
+
+    public Bier bier = new Bier();
+    public List<Bier> arrayList = new ArrayList<Bier>();
 
 
     /**
@@ -31,11 +36,7 @@ public class FirebaseHelper implements Callback {
     public FirebaseHelper() {
     }
 
-    public static synchronized FirebaseHelper getInstance() {
-        if (firebaseHelper == null)
-            firebaseHelper = new FirebaseHelper();
-        return firebaseHelper;
-    }
+
 
     public void setData(Bier bier) {
 
@@ -53,27 +54,32 @@ public class FirebaseHelper implements Callback {
 
     }
 
-    public Bier getData(String bierBrouwerij) {
-        DatabaseReference bier= usersRef.child(bierBrouwerij);
-        Callback callback =new MyCallback();
-        callData(bier, callback);
-
-
-
-        return null;
+    public void dataRequest(String bierBrouwerij) {
+        DatabaseReference bier = usersRef.child(bierBrouwerij);
+        readData(bier);
     }
 
-    private void callData(DatabaseReference data, Callback mycallback){
+    public Bier getBier() {
+        return bier;
+    }
 
-        data.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void getJson(Bier bier) {
+
+    }
+
+
+    private void readData(DatabaseReference dbRefercence) {
+
+        dbRefercence.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                bier.setCity(dataSnapshot.child("stad").getValue().toString());
-                bier.setPhone(dataSnapshot.child("telefoonnummer").getValue().toString());
-                bier.setState(dataSnapshot.child("staat").getValue().toString());
-                bier.setBrewery_type(dataSnapshot.child("brouwerij_type").getValue().toString());
-//                mycallback.onCallback(bier);
+                Bier bier = new Bier();
+                bier.setStad(dataSnapshot.child("stad").getValue().toString());
+                bier.setTelefoonnummer(dataSnapshot.child("telefoonnummer").getValue().toString());
+                bier.setStaat(dataSnapshot.child("staat").getValue().toString());
+                bier.setBrouwerij_type(dataSnapshot.child("brouwerij_type").getValue().toString());
+                setBier(bier);
             }
 
             @Override
@@ -83,13 +89,9 @@ public class FirebaseHelper implements Callback {
         });
 
     }
-
-    private void getJson(Bier bier) {
-
+    public void setBier(Bier bier){
+        this.bier= bier;
     }
 
-    @Override
-    public void onCallback(Object object) {
 
-    }
 }
