@@ -1,33 +1,35 @@
 package com.example.schaapkabap.biercollection.Models;
 
-public class Recensie {
-    private int cijfer;
-    private String recensietekst;
-    private Bier bier;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-    public Recensie(int cijfer, String recensietekst, Bier bier) {
-        this.cijfer = cijfer;
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Recensie {
+
+    Button mButton;
+    EditText mEdit;
+    TextView mText;
+
+    private String recensietekst;
+
+    public Recensie(String recensietekst) {
+
         this.recensietekst = recensietekst;
-        this.bier = bier;
+
     }
 
     public Recensie() {
     }
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("recensietekst", recensietekst);
 
-    public Bier getBier() {
-        return bier;
-    }
 
-    public void setBier(Bier bier) {
-        this.bier = bier;
-    }
-
-    public int getCijfer() {
-        return cijfer;
-    }
-
-    public void setCijfer(int cijfer) {
-        this.cijfer = cijfer;
+        return result;
     }
 
     public String getRecensietekst() {
@@ -38,3 +40,5 @@ public class Recensie {
         this.recensietekst = recensietekst;
     }
 }
+
+

@@ -1,10 +1,15 @@
 package com.example.schaapkabap.biercollection.activitys;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.schaapkabap.biercollection.Models.Barchart;
 import com.example.schaapkabap.biercollection.R;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -12,47 +17,70 @@ import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class Baractivity extends AppCompatActivity {
 
     private CombinedChart mChart;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("server/saving-data/fireblog/posts");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baractivity);
 
-        mChart = (CombinedChart) findViewById(R.id.chart);
-        //  mChart.setDescription("lala");
-        // mChart.se
+        BarChart barChart = (BarChart) findViewById(R.id.barchart);
 
-        mChart.setDrawOrder(new CombinedChart.DrawOrder[]{
-                CombinedChart.DrawOrder.BAR
-        });
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+                entries.add(new BarEntry(0f, 5));
+                entries.add(new BarEntry(1f, 4));
+                entries.add(new BarEntry(2f, 4));
+                entries.add(new BarEntry(3f, 3));
+                entries.add(new BarEntry(4f, 3));
+                entries.add(new BarEntry(5f, 2));
+                entries.add(new BarEntry(6f, 0));
 
-        setData();
+
+
+        BarDataSet dataset = new BarDataSet(entries, "aantal bierbrouwerijen per staat");
+
+        ArrayList<String> labels = new ArrayList <String>();
+                labels.add("texas");
+                labels.add("Florida");
+                labels.add("Georgia");
+                labels.add("Virginia");
+                labels.add("Hawai");
+                labels.add("New-York");
+                labels.add("Illois");
+
+
+
+
+        float minXRange = 10;
+        float maxXRange = 10;
+        barChart.setVisibleXRange(minXRange, maxXRange);
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        BarData data = new BarData(dataset);
+        barChart.setData(data);
+
+
     }
 
-    private void setData() {
 
 
-        BarData bar = new BarData();
-        ArrayList<BarEntry> barEntries = new ArrayList<BarEntry>();
-        for (int i = 0; i < 10; i++) {
-            barEntries.add(new BarEntry((float) Math.random() * 15, i));
-        }
-        BarDataSet set = new BarDataSet(barEntries, "Bar DataSet");
-        bar.addDataSet(set);
 
-        // ADD data to the chart
-        //String[] xValues = {"x1","x2","x3","x4","x5","x6","x7","x8","x9","x10"};
-        CombinedData data = new CombinedData();
-        //data.setData(xValues);
-        data.setData(bar);
-        mChart.setData(data);
-        mChart.invalidate();
 
-    }
 }
+

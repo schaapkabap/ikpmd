@@ -4,22 +4,15 @@ import java.io.Serializable;
 
 public class Barchart {
 
-    private String staatnaam;
+    private String state;
+    private int nummer;
 
-    public Barchart(String staatnaam) {
-        this.staatnaam = staatnaam;
-    }
+
 
     public Barchart(){
 
     }
 
-    public String getStaatnaam() {
-        return staatnaam;
-    }
 
-    public void setStaatnaam(String staatnaam) {
-        this.staatnaam = staatnaam;
-    }
 }
 
