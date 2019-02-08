@@ -7,8 +7,6 @@ public class Barchart {
     private String state;
     private int nummer;
 
-
-
     public Barchart(){
 
     }

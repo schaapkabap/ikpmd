@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.Firebase">
+    tools:context=".activitys.RecensieActivity">
 
     <Button
         android:id="@+id/recensiebutton"
@@ -29,9 +29,25 @@
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="183dp"
         android:ems="10"
+        android:hint="Vul uw recensie in"
         android:inputType="textPersonName"
-        android:text="Vul uw recensie in"
         app:layout_constraintBottom_toTopOf="@+id/recensiebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="179dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="49dp"
+        android:ems="10"
+        android:hint="Geef een cijfer"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

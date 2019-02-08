@@ -41,9 +41,10 @@ dependencies {
 
 
     implementation 'com.google.firebase:firebase-database:16.0.1'
-    //implementation 'com.google.firebase:firebase-database:16.0.1:15.0.0'
-
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.github.terencejackson:JavaBreweryDbConnector:3fd2570dfa'
+
+
 
 }
 apply plugin: 'com.google.gms.google-services'

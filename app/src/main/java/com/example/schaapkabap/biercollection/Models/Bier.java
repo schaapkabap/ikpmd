@@ -17,22 +17,6 @@ public class Bier {
     private String updated_at;
     private String name;
 
-    public Bier(String brewery_type, String street, String city, String state, String phone, String postal_code, String country, String longitude, int id, String latitude, String website_url, String updated_at, String name) {
-        this.brewery_type = brewery_type;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.phone = phone;
-        this.postal_code = postal_code;
-        this.country = country;
-        this.longitude = longitude;
-        this.id = id;
-        this.latitude = latitude;
-        this.website_url = website_url;
-        this.updated_at = updated_at;
-        this.name = name;
-    }
-
     public Bier() {
     }
 

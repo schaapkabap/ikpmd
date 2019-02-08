@@ -24,75 +24,61 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Firebase extends AppCompatActivity {
+public class RecensieActivity extends AppCompatActivity implements DataLink {
 
-    Button mButton;
-    EditText mEdit;
-    TextView mText;
+    private EditText mEdit;
+    private EditText rating;
+    private Button recensie;
+    private FirebaseHelper firebaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase);
-        FirebaseDatabase database;
-        DatabaseReference myRef;
         final String TAG = MainActivity.class.getSimpleName();
 
-
-        Button recensie = (Button) findViewById(R.id.recensiebutton);
-
-
-
-
-
-
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("message");
-
-
-
-
+        this.elementLinker();
+        this.fireBaseConnector();
         recensie.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                mEdit   = (EditText)findViewById(R.id.editText);
-                mEdit.getText().toString();
-
-
-
-
-
-
-                String key = myRef.child("message").push().getKey();
-                Recensie recensie = new Recensie(mEdit.getText().toString());
-                Map<String, Object> postValues = recensie.toMap();
-
-                Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put("/recensies/" + key, postValues);
-
-
-                myRef.updateChildren(childUpdates);
+                //build recensie
+                Recensie recensie = new Recensie();
+                recensie.setRecensietekst(mEdit.getText().toString());
+                recensie.setRating(Integer.parseInt(rating.getText().toString()));
+                getFirebaseHelper().addData(recensie);
 
                 CharSequence text = "Uw recensie is geplaats";
                 int duration = Toast.LENGTH_LONG;
                 Toast toast = Toast.makeText(getApplicationContext(), text, duration);
                 toast.show();
-
-
             }
         });
 
 
+    }
 
+    public FirebaseHelper getFirebaseHelper() {
+        return firebaseHelper;
+    }
 
+    public void setFirebaseHelper(FirebaseHelper firebaseHelper) {
+        this.firebaseHelper = firebaseHelper;
+    }
 
-
+    public void fireBaseConnector() {
+            this.firebaseHelper = new FirebaseHelper();
+            this.firebaseHelper.setReferentie("recensies");
 
     }
 
 
-
-
+    @Override
+    public void elementLinker() {
+        recensie = (Button) findViewById(R.id.recensiebutton);
+        mEdit = (EditText) findViewById(R.id.editText);
+        rating = (EditText) findViewById(R.id.rating);
+    }
 }
 
 

@@ -1,11 +1,8 @@
 package com.example.schaapkabap.biercollection.helpers;
 
 import android.support.annotation.NonNull;
-import android.telecom.Call;
-import android.util.Log;
 
 import com.example.schaapkabap.biercollection.Models.Bier;
-import com.example.schaapkabap.biercollection.activitys.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,55 +13,45 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class FirebaseHelper {
 
     private static FirebaseHelper firebaseHelper;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("biers");
-    DatabaseReference usersRef = ref.child("Bier");
-    DatabaseReference data = ref.child("Bier");
-
+    private String key;
+    private DatabaseReference myRef;
     public Bier bier = new Bier();
     public List<Bier> arrayList = new ArrayList<Bier>();
 
 
-    /**
-     *
-     */
     public FirebaseHelper() {
     }
 
+    public void setReferentie(String referentie) {
+        this.myRef = database.getReference(referentie);
+        this.key = myRef.child(referentie).push().getKey();
 
-
-    public void setData(Bier bier) {
-
-        getJson(bier);
     }
 
+
     /**
-     * @param bier
+     * @param obj
      */
-    public void addData(Bier bier) {
-        Map<String, Bier> biers = new HashMap<>();
-        biers.put(bier.getName(), bier);
-        usersRef.setValue(biers);
-        biers.clear();
+    public void addData(Object obj) {
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(key, obj);
+        myRef.updateChildren(childUpdates);
 
     }
 
     public void dataRequest(String bierBrouwerij) {
-        DatabaseReference bier = usersRef.child(bierBrouwerij);
-        readData(bier);
+
+//        readData(bier);
     }
 
     public Bier getBier() {
         return bier;
-    }
-
-    private void getJson(Bier bier) {
-
     }
 
 
@@ -89,8 +76,9 @@ public class FirebaseHelper {
         });
 
     }
-    public void setBier(Bier bier){
-        this.bier= bier;
+
+    public void setBier(Bier bier) {
+        this.bier = bier;
     }
 
 

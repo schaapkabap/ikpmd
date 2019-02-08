@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activitys.Bierlist" />
-        <activity android:name=".activitys.Firebase" />
+        <activity android:name=".activitys.RecensieActivity" />
         <activity android:name=".activitys.Grafieken" />
         <activity android:name=".activitys.Baractivity" />
         <activity
