@@ -3,10 +3,12 @@ package com.example.schaapkabap.biercollection.activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,9 @@ import android.widget.TextView;
 import com.example.schaapkabap.biercollection.R;
 
 import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDetail;
+import com.example.schaapkabap.biercollection.helpers.Api.HttpHandler;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -38,10 +42,22 @@ public class ItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
+        HttpHandler httpHandler = new HttpHandler();
+        String call = null;
+        try {
+            call = httpHandler.makeServiceCall("https://api.brewerydb.com/v2/beers/?key=37f34d7d9ce37224e5cf94b33db59ab3");
+            Log.d("ApiTEST", "The response is: " + call);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         if (findViewById(R.id.item_detail_container) != null) {
@@ -65,12 +81,12 @@ public class ItemListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final ItemListActivity mParentActivity;
-        private final List<BrouwerijDetail.DummyItem> mValues;
+        private final List<BrouwerijDetail.Bier> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BrouwerijDetail.DummyItem item = (BrouwerijDetail.DummyItem) view.getTag();
+                BrouwerijDetail.Bier item = (BrouwerijDetail.Bier) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
@@ -90,7 +106,7 @@ public class ItemListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<BrouwerijDetail.DummyItem> items,
+                                      List<BrouwerijDetail.Bier> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

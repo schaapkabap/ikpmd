@@ -42,7 +42,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    implementation 'com.github.terencejackson:JavaBreweryDbConnector:3fd2570dfa'
+//    implementation 'com.github.terencejackson:JavaBreweryDbConnector:3fd2570dfa'
 
 
 

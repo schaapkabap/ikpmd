@@ -68,16 +68,16 @@ public class GrafiekenActivity extends AppCompatActivity {
 
         //  http://www.materialui.co/colors
         ArrayList<Integer> colors = new ArrayList<>();
-        if (currentEcts <10) {
-            colors.add(Color.rgb(244,81,30));
-        } else if (currentEcts < 40){
-            colors.add(Color.rgb(235,0,0));
-        } else if  (currentEcts < 50) {
-            colors.add(Color.rgb(253,216,53));
+        if (currentEcts < 10) {
+            colors.add(Color.rgb(244, 81, 30));
+        } else if (currentEcts < 40) {
+            colors.add(Color.rgb(235, 0, 0));
+        } else if (currentEcts < 50) {
+            colors.add(Color.rgb(253, 216, 53));
         } else {
-            colors.add(Color.rgb(67,160,71));
+            colors.add(Color.rgb(67, 160, 71));
         }
-        colors.add(Color.rgb(255,0,0));
+        colors.add(Color.rgb(255, 0, 0));
 
         PieDataSet dataSet = new PieDataSet(yValues, "ECTS");
         dataSet.setColors(colors);//colors);
@@ -87,6 +87,6 @@ public class GrafiekenActivity extends AppCompatActivity {
         PieData data = new PieData(dataSet);
         mChart.setData(data); // bind dataset aan chart.
         mChart.invalidate();  // Aanroepen van een redraw
-        Log.d("aantal =", ""+currentEcts);
+        Log.d("aantal =", "" + currentEcts);
     }
 }
