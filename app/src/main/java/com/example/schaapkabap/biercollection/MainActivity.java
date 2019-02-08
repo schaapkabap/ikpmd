@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements DataLink {
 
         Grafieken.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("Grafiekenbutton ingedrukt", "start Grafieken");
+                Log.d("Grafiekenbutton ingedrukt", "start GrafiekenActivity");
                 startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.Baractivity.class));
             }
         });

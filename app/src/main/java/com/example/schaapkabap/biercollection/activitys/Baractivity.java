@@ -29,10 +29,6 @@ import java.util.ArrayList;
 
 public class Baractivity extends AppCompatActivity {
 
-    private CombinedChart mChart;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("server/saving-data/fireblog/posts");
-
 
 
     @Override

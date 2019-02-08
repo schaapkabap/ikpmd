@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".activitys.Bierlist" />
         <activity android:name=".activitys.RecensieActivity" />
-        <activity android:name=".activitys.Grafieken" />
+        <activity android:name=".activitys.GrafiekenActivity" />
         <activity android:name=".activitys.Baractivity" />
         <activity
             android:name=".activitys.ItemListActivity"

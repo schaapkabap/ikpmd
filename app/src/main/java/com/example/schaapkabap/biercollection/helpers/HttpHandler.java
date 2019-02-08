@@ -1,4 +1,4 @@
-package com.example.schaapkabap.biercollection.activitys;
+package com.example.schaapkabap.biercollection.helpers;
 
 import android.util.Log;
 
