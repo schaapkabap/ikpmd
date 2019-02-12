@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements DataLink {
     private Button Bierlist;
     private Button Firebase;
     private Button Grafieken;
+    private Button Apikey;
 
 
     @Override
@@ -23,6 +24,13 @@ public class MainActivity extends AppCompatActivity implements DataLink {
         setContentView(R.layout.activity_main);
 
         elementLinker();
+
+        Apikey.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("Apikey ingedrukt", "start apikey");
+                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.apikey.class));
+            }
+        });
 
         Bierlist.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -51,5 +59,6 @@ public class MainActivity extends AppCompatActivity implements DataLink {
         Bierlist = (Button) findViewById(R.id.Listbutton);
         Firebase = (Button) findViewById(R.id.Firebasebutton);
         Grafieken = (Button) findViewById(R.id.Grafiekbutton);
+        Apikey  = (Button) findViewById(R.id.Apikey);
     }
 }
