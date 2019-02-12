@@ -45,9 +45,24 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="49dp"
         android:ems="10"
-        android:hint="Geef een cijfer"
+        android:text="1"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="151dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="9dp"
+        android:textSize="14dp"
+        android:text="Vul hieronder een cijfer in"
+        app:layout_constraintBottom_toTopOf="@+id/rating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

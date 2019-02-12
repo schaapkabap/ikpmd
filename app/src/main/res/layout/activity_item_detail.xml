@@ -52,26 +52,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button5"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <EditText
-                android:id="@+id/editText2"
-                style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="1-10"
-                android:inputType="number"
-                android:autofillHints="" />
-
-        </LinearLayout>
+            android:orientation="horizontal"/>
     </android.support.v4.widget.NestedScrollView>
 
 
