@@ -8,16 +8,18 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.schaapkabap.biercollection.Models.ApiBier;
 import com.example.schaapkabap.biercollection.R;
 
 import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDetail;
-import com.example.schaapkabap.biercollection.helpers.Api.HttpHandler;
+import com.example.schaapkabap.biercollection.helpers.Api.ApiHandler;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.List;
@@ -50,14 +52,13 @@ public class ItemListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
-        HttpHandler httpHandler = new HttpHandler();
-        String call = null;
-        try {
-            call = httpHandler.makeServiceCall("https://api.brewerydb.com/v2/beers/?key=37f34d7d9ce37224e5cf94b33db59ab3");
-            Log.d("ApiTEST", "The response is: " + call);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Log.d("ApiTEST", "The response is: " + ApiHandler.getInstance().getAll());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
         if (findViewById(R.id.item_detail_container) != null) {
@@ -70,26 +71,32 @@ public class ItemListActivity extends AppCompatActivity {
 
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        try {
+            setupRecyclerView((RecyclerView) recyclerView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, BrouwerijDetail.ITEMS, mTwoPane));
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView) throws IOException, JSONException {
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, ApiHandler.getInstance().getAll(), mTwoPane));
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final ItemListActivity mParentActivity;
-        private final List<BrouwerijDetail.Bier> mValues;
+        private final List<ApiBier> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BrouwerijDetail.Bier item = (BrouwerijDetail.Bier) view.getTag();
+                ApiBier item = (ApiBier) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.getId());
                     ItemDetailFragment fragment = new ItemDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -98,7 +105,7 @@ public class ItemListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ItemDetailActivity.class);
-                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
@@ -106,8 +113,9 @@ public class ItemListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<BrouwerijDetail.Bier> items,
+                                      List<ApiBier> items,
                                       boolean twoPane) {
+
             mValues = items;
             mParentActivity = parent;
             mTwoPane = twoPane;
@@ -122,8 +130,8 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mIdView.setText(mValues.get(position).getId());
+            holder.mContentView.setText(mValues.get(position).getName());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);

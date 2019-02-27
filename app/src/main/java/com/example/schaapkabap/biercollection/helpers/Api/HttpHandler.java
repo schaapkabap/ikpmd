@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class HttpHandler extends AsyncTask<String, Integer, Long> {
     private static final String TAG = HttpHandler.class.getSimpleName();
@@ -27,8 +28,8 @@ public class HttpHandler extends AsyncTask<String, Integer, Long> {
         InputStream is = null;
         URL url = new URL(reqUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(10); // time in milliseconds
-        conn.setConnectTimeout(15); // time in milliseconds
+        conn.setReadTimeout(30000); // time in milliseconds
+        conn.setConnectTimeout(70000); // time in milliseconds
         conn.setRequestMethod("GET"); // request method GET OR POST
         conn.setDoInput(true);
         conn.connect(); // calling the web address
