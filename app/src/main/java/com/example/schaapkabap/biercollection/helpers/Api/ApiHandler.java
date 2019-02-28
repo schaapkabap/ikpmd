@@ -18,7 +18,7 @@ public class ApiHandler implements ApiRequest {
     private static ApiHandler instance;
     private static HttpHandler httpHandler;
     //TODO naar api  mkey van bestand ophalen.
-    private String apikey = "?key=37f34d7d9ce37224e5cf94b33db59ab3";
+    private final String apikey = "?key=37f34d7d9ce37224e5cf94b33db59ab3";
     private final String domain = "https://sandbox-api.brewerydb.com/v2/";
 
     private ApiHandler() {
@@ -39,12 +39,12 @@ public class ApiHandler implements ApiRequest {
         JSONObject jObject = new JSONObject(json);
 
 
-        ApiBier apiBier =new ApiBier();
+        ApiBier apiBier = new ApiBier();
         apiBier.setId(id);
-        if(jObject.has("name")){
+        if (jObject.has("name")) {
             apiBier.setName(jObject.getString("name"));
         }
-        if(jObject.has("abv")){
+        if (jObject.has("abv")) {
             apiBier.setAbv(jObject.getString("abv"));
         }
 
@@ -57,37 +57,42 @@ public class ApiHandler implements ApiRequest {
         String url = urlBuilder("beers");
         String json = httpHandler.makeServiceCall(url);
 
-
         JSONObject jObject = new JSONObject(json);
-        System.out.println(jObject.toString());
-
-        List list= new ArrayList<Object>();
         JSONArray jsonArray = jObject.getJSONArray("data");
-        Log.d("Birs",jObject.getJSONArray("data").toString());
-        for(int i = 0 ; i < jsonArray.length(); i++){
-            ApiBier apiBier = new ApiBier();
-            if(jsonArray.getJSONObject(i).has("id")){
-                apiBier.setId(jsonArray.getJSONObject(i).getString("id"));
-                Log.d("bierkey",apiBier.getId());
-            }
-            if(jsonArray.getJSONObject(i).has("abv")){
-                apiBier.setAbv(jsonArray.getJSONObject(i).getString("abv"));
-            }
-            if (jsonArray.getJSONObject(i).has("name")){
-                apiBier.setName(jsonArray.getJSONObject(i).getString("name"));
-            }
-            list.add(apiBier);
-        }
+        List<ApiBier> list =  jsonArrayToBierList(jsonArray);
 
-        Log.d("biers",list.toString());
 
         return list;
     }
 
-    public List<ApiBier> search(String searchterm){
-        return null;
+    public List<ApiBier> search(String searchterm) throws IOException, JSONException {
+        String url = urlBuilder("search?q=" + searchterm + "&type=beer");
+        String json = httpHandler.makeServiceCall(url);
+        JSONObject jObject = new JSONObject(json);
+        JSONArray jsonArray = jObject.getJSONArray("data");
+        List<ApiBier> list =  jsonArrayToBierList(jsonArray);
+        return list;
+
     }
 
+    private List<ApiBier> jsonArrayToBierList(JSONArray jsonArray) throws JSONException {
+        List list = new ArrayList<Object>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            ApiBier apiBier = new ApiBier();
+            if (jsonArray.getJSONObject(i).has("id")) {
+                apiBier.setId(jsonArray.getJSONObject(i).getString("id"));
+                Log.d("bierkey", apiBier.getId());
+            }
+            if (jsonArray.getJSONObject(i).has("abv")) {
+                apiBier.setAbv(jsonArray.getJSONObject(i).getString("abv"));
+            }
+            if (jsonArray.getJSONObject(i).has("name")) {
+                apiBier.setName(jsonArray.getJSONObject(i).getString("name"));
+            }
+            list.add(apiBier);
+        }
+        return list;
+    }
 
     private String urlBuilder(String path) {
         String url = domain + path + "/" + apikey;
