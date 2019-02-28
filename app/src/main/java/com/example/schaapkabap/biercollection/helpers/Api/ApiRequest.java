@@ -9,7 +9,7 @@ import java.util.List;
 
 interface ApiRequest {
 
-    Object getById(String id) throws IOException;
+    Object getById(String id) throws IOException, JSONException;
 
     List<ApiBier> getAll() throws IOException, JSONException;
 

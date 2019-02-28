@@ -18,7 +18,7 @@ public class ApiHandler implements ApiRequest {
     private static HttpHandler httpHandler;
     //TODO naar api  mkey van bestand ophalen.
     private String apikey = "?key=37f34d7d9ce37224e5cf94b33db59ab3";
-    private final String domain = "https://api.brewerydb.com/v2/";
+    private final String domain = "https://sandbox-api.brewerydb.com/v2/";
 
     private ApiHandler() {
     }
@@ -33,10 +33,15 @@ public class ApiHandler implements ApiRequest {
 
     //TODO waarde terug gooien
     @Override
-    public Object getById(String id) throws IOException {
+    public Object getById(String id) throws IOException, JSONException {
         String url = urlBuilder("beer/" + id);
         String json = httpHandler.makeServiceCall(url);
-        return null;
+        JSONObject jObject = new JSONObject(json);
+
+
+        ApiBier apiBier =new ApiBier();
+
+        return apiBier;
     }
 
 
