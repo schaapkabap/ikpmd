@@ -10,7 +10,9 @@ import android.widget.Button;
 import com.example.schaapkabap.biercollection.activitys.DataLink;
 import com.example.schaapkabap.biercollection.activitys.RecensieActivity;
 
-public class MainActivity extends AppCompatActivity implements DataLink {
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity implements DataLink, Serializable {
 
     private Button Bierlist;
     private Button Firebase;

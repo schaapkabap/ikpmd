@@ -1,6 +1,8 @@
 package com.example.schaapkabap.biercollection.Models;
 
-public class ApiBier {
+import java.io.Serializable;
+@SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
+public class ApiBier implements Serializable {
     private String id;
     private String name;
     // Alcohol percentage

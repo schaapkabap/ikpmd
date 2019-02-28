@@ -3,6 +3,7 @@ package com.example.schaapkabap.biercollection.helpers.Api;
 import android.util.Log;
 
 import com.example.schaapkabap.biercollection.Models.ApiBier;
+import com.google.android.gms.common.api.Api;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +32,6 @@ public class ApiHandler implements ApiRequest {
         return instance;
     }
 
-    //TODO waarde terug gooien
     @Override
     public Object getById(String id) throws IOException, JSONException {
         String url = urlBuilder("beer/" + id);
@@ -40,6 +40,13 @@ public class ApiHandler implements ApiRequest {
 
 
         ApiBier apiBier =new ApiBier();
+        apiBier.setId(id);
+        if(jObject.has("name")){
+            apiBier.setName(jObject.getString("name"));
+        }
+        if(jObject.has("abv")){
+            apiBier.setAbv(jObject.getString("abv"));
+        }
 
         return apiBier;
     }
@@ -75,6 +82,10 @@ public class ApiHandler implements ApiRequest {
         Log.d("biers",list.toString());
 
         return list;
+    }
+
+    public List<ApiBier> search(String searchterm){
+        return null;
     }
 
 

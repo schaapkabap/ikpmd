@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,6 @@ import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDet
  * on handsets.
  */
 public class ItemDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
 
     /**
      * The dummy content this fragment is presenting.
@@ -42,14 +38,12 @@ public class ItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+
+
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = new ApiBier();//
-            mItem.setName("test");
-            mItem.setAbv("12.5");
-            mItem.setId("dsafdsafd");// BrouwerijDetail.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            // BrouwerijDetail.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -57,7 +51,6 @@ public class ItemDetailFragment extends Fragment {
                 appBarLayout.setTitle(mItem.getName());
             }
         }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,5 +63,13 @@ public class ItemDetailFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    public ApiBier getmItem() {
+        return mItem;
+    }
+
+    public void setmItem(ApiBier mItem) {
+        this.mItem = mItem;
     }
 }
