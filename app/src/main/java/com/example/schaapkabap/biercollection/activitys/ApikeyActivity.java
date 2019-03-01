@@ -10,16 +10,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.schaapkabap.biercollection.R;
+import com.example.schaapkabap.biercollection.helpers.SharePref;
 
 
-
-public class apikey extends AppCompatActivity {
+public class ApikeyActivity extends AppCompatActivity {
 
     EditText editText2;
     Button apikey;
 
     public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String APIkey = "nameKey";
+    public static final String APIkey = "Apikey";
 
 
     SharedPreferences sharedpreferences;
@@ -38,13 +38,13 @@ public class apikey extends AppCompatActivity {
             public void onClick(View v) {
                 String api  = editText2.getText().toString();
 
-
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putString(APIkey, api);
-
-                editor.apply();
-                Toast.makeText(apikey.this,"dank u wel voor de key",Toast.LENGTH_LONG).show();
+                SharePref.getInstance(getApplicationContext()).savePlaceObj(api);
+//                SharedPreferences.Editor editor = sharedpreferences.edit();
+//
+//                editor.putString(APIkey, api);
+//
+//                editor.apply();
+                Toast.makeText(ApikeyActivity.this,"dank u wel voor de key",Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -19,6 +19,7 @@ import com.example.schaapkabap.biercollection.R;
 
 import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDetail;
 import com.example.schaapkabap.biercollection.helpers.Api.ApiHandler;
+import com.example.schaapkabap.biercollection.helpers.SharePref;
 
 import org.json.JSONException;
 
@@ -75,7 +76,8 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) throws IOException, JSONException {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, ApiHandler.getInstance().getAll(), mTwoPane));
+        String key = SharePref.getInstance(getApplicationContext()).getPlaceObj();
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, ApiHandler.getInstance(key).getAll(), mTwoPane));
     }
 
     public static class SimpleItemRecyclerViewAdapter

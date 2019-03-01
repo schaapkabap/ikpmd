@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.schaapkabap.biercollection.activitys.ApikeyActivity;
 import com.example.schaapkabap.biercollection.activitys.DataLink;
 import com.example.schaapkabap.biercollection.activitys.RecensieActivity;
 
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements DataLink, Seriali
 
         Apikey.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("Apikey ingedrukt", "start apikey");
-                startActivity(new Intent(MainActivity.this, com.example.schaapkabap.biercollection.activitys.apikey.class));
+                Log.d("Apikey ingedrukt", "start ApikeyActivity");
+                startActivity(new Intent(MainActivity.this, ApikeyActivity.class));
             }
         });
 

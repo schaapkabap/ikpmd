@@ -18,17 +18,23 @@ public class ApiHandler implements ApiRequest {
     private static ApiHandler instance;
     private static HttpHandler httpHandler;
     //TODO naar api  mkey van bestand ophalen.
-    private final String apikey = "?key=37f34d7d9ce37224e5cf94b33db59ab3";
+    private String apikey;
     private final String domain = "https://sandbox-api.brewerydb.com/v2/";
 
     private ApiHandler() {
     }
 
-    public static ApiHandler getInstance() {
+    /**
+     *
+     * @param key Apikey of dbbrewerys
+     * @return
+     */
+    public static ApiHandler getInstance(String key) {
         if (instance == null) {
             instance = new ApiHandler();
             httpHandler = new HttpHandler();
         }
+        instance.apikey = "?key=" +key;
         return instance;
     }
 
