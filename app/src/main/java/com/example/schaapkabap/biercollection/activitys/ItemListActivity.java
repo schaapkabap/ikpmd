@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.schaapkabap.biercollection.Models.ApiBier;
 import com.example.schaapkabap.biercollection.R;
@@ -70,8 +71,10 @@ public class ItemListActivity extends AppCompatActivity {
             setupRecyclerView((RecyclerView) recyclerView);
         } catch (IOException e) {
             e.printStackTrace();
+            apiKeyFailed();
         } catch (JSONException e) {
             e.printStackTrace();
+            apiKeyFailed();
         }
     }
 
@@ -98,9 +101,7 @@ public class ItemListActivity extends AppCompatActivity {
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("GEtTag",  view.getTag().toString());
                 ApiBier item = (ApiBier) view.getTag();
-                Log.d("GEtTag",  item.getId());
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     ItemDetailFragment fragment = new ItemDetailFragment();
@@ -153,5 +154,10 @@ public class ItemListActivity extends AppCompatActivity {
                 mContentView = (TextView) view.findViewById(R.id.content);
             }
         }
+    }
+    private void apiKeyFailed(){
+        Toast.makeText(this,"U hebt geen internet of de key functioneert niet",Toast.LENGTH_LONG).show();
+        finish();
+
     }
 }

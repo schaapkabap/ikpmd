@@ -13,7 +13,7 @@ import com.example.schaapkabap.biercollection.R;
 import com.example.schaapkabap.biercollection.helpers.SharePref;
 
 
-public class ApikeyActivity extends AppCompatActivity {
+public class ApikeyActivity extends AppCompatActivity implements DataLink{
 
     EditText editText2;
     Button apikey;
@@ -28,24 +28,30 @@ public class ApikeyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apikey);
+        elementLinker();
 
-        editText2=(EditText)findViewById(R.id.editText2);
 
-        apikey=(Button)findViewById(R.id.APIkeybutton);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        editText2.setText(SharePref.getInstance(getApplicationContext()).getPlaceObj());
 
         apikey.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String api  = editText2.getText().toString();
-
+                if(api == ""){
+                    Toast.makeText(ApikeyActivity.this, "Vul een key in!",Toast.LENGTH_SHORT).show();
+                }
                 SharePref.getInstance(getApplicationContext()).savePlaceObj(api);
-//                SharedPreferences.Editor editor = sharedpreferences.edit();
-//
-//                editor.putString(APIkey, api);
-//
-//                editor.apply();
-                Toast.makeText(ApikeyActivity.this,"dank u wel voor de key",Toast.LENGTH_LONG).show();
+                Toast.makeText(ApikeyActivity.this,"De key is opgeslagen",Toast.LENGTH_LONG).show();
+                finish();
             }
         });
+    }
+
+    @Override
+    public void elementLinker() {
+        editText2=(EditText)findViewById(R.id.editText2);
+
+        apikey=(Button)findViewById(R.id.APIkeybutton);
     }
 }
