@@ -11,21 +11,45 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/item_detail"
-            style="?android:attr/textAppearanceLarge"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textIsSelectable="true"
-            tools:context=".activitys.ItemDetailFragment" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alcohol"
+                tools:context=".activitys.ItemDetailFragment" />
+
+            <TextView
+                android:id="@+id/item_detail"
+                style="?android:attr/textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textIsSelectable="true"
+                tools:context=".activitys.ItemDetailFragment" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/recensiebutton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recensie"
             tools:context=".activitys.ItemDetailFragment" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="120dp"
+            tools:context=".activitys.ItemDetailFragment" />
+
+
     </LinearLayout>
 
 </RelativeLayout>

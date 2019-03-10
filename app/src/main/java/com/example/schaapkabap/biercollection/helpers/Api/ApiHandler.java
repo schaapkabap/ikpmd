@@ -98,6 +98,10 @@ public class ApiHandler implements ApiRequest {
             if (jsonArray.getJSONObject(i).has("name")) {
                 apiBier.setName(jsonArray.getJSONObject(i).getString("name"));
             }
+            if (jsonArray.getJSONObject(i).has("labels")) {
+
+               apiBier.setUrlImage((String) jsonArray.getJSONObject(i).getJSONObject("labels").get("large"));
+            }
             list.add(apiBier);
         }
         return list;

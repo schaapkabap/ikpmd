@@ -8,6 +8,8 @@ public class ApiBier implements Serializable {
     // Alcohol percentage
     private String abv;
 
+    private String urlImage;
+
 
     public ApiBier() {
     }
@@ -34,5 +36,13 @@ public class ApiBier implements Serializable {
 
     public void setAbv(String abv) {
         this.abv = abv;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

@@ -2,6 +2,8 @@ package com.example.schaapkabap.biercollection.activitys;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,11 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.schaapkabap.biercollection.Models.ApiBier;
 import com.example.schaapkabap.biercollection.R;
 import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDetail;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -57,7 +64,16 @@ public class ItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.getAbv());
+            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.getAbv()+"%");
+            ImageView i = (ImageView) rootView.findViewById(R.id.logo);
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(mItem.getUrlImage()).getContent());
+                i.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
         Button recensieButton = (Button) rootView.findViewById(R.id.recensiebutton);
         recensieButton.setOnClickListener(new View.OnClickListener() {
