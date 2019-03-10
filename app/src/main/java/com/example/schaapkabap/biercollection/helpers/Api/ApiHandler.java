@@ -34,7 +34,7 @@ public class ApiHandler implements ApiRequest {
             instance = new ApiHandler();
             httpHandler = new HttpHandler();
         }
-        instance.apikey = "?key=" +key;
+        instance.apikey = "key=" +key;
         return instance;
     }
 
@@ -70,9 +70,12 @@ public class ApiHandler implements ApiRequest {
 
         return list;
     }
-
+//TODO set a new urlBuilder for searchterm
     public List<ApiBier> search(String searchterm) throws IOException, JSONException {
-        String url = urlBuilder("search?q=" + searchterm + "&type=beer");
+        if(searchterm == null){
+            return null;
+        }
+        String url = domain + "search?q=" + searchterm + "&type=beer"+ "&"+ apikey;
         String json = httpHandler.makeServiceCall(url);
         JSONObject jObject = new JSONObject(json);
         JSONArray jsonArray = jObject.getJSONArray("data");
@@ -101,7 +104,7 @@ public class ApiHandler implements ApiRequest {
     }
 
     private String urlBuilder(String path) {
-        String url = domain + path + "/" + apikey;
+        String url = domain + path + "/?" + apikey;
         return url;
 
     }

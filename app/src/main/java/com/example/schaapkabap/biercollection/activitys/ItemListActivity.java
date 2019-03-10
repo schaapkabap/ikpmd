@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    private String searchTerm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,10 @@ public class ItemListActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle(getTitle());
+
 
         if (findViewById(R.id.item_detail_container) != null) {
             // The detail container view will be present only in the
@@ -76,11 +79,37 @@ public class ItemListActivity extends AppCompatActivity {
             e.printStackTrace();
             apiKeyFailed();
         }
+        SearchView simpleSearchView = (SearchView) findViewById(R.id.simpleSearchView);
+
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchTerm = query;
+                try {
+                    setupRecyclerView((RecyclerView) recyclerView);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) throws IOException, JSONException {
         String key = SharePref.getInstance(getApplicationContext()).getPlaceObj();
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, ApiHandler.getInstance(key).getAll(), mTwoPane));
+        if(searchTerm == null){
+            recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, ApiHandler.getInstance(key).getAll(), mTwoPane));
+        }
+        else {
+            recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, ApiHandler.getInstance(key).search(searchTerm), mTwoPane));
+        }
     }
 
     public static class SimpleItemRecyclerViewAdapter
