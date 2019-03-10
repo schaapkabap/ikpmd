@@ -1,6 +1,7 @@
 package com.example.schaapkabap.biercollection.activitys;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.schaapkabap.biercollection.Models.ApiBier;
@@ -39,14 +41,15 @@ public class ItemDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+        Activity activity = this.getActivity();
 
-
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.getName());
-            }
+        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(mItem.getName());
         }
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +59,15 @@ public class ItemDetailFragment extends Fragment {
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.getAbv());
         }
+        Button recensieButton = (Button) rootView.findViewById(R.id.recensiebutton);
+        recensieButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(rootView.getContext(), RecensieActivity.class);
+                intent.putExtra("ApiBier",  mItem);
+                getContext().startActivity(intent);
+            }
+        });
 
         return rootView;
     }

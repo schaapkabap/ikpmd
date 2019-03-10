@@ -5,7 +5,7 @@ public class Recensie {
 
     private String recensietekst;
     private int rating;
-    private  Bier bier;
+    private  ApiBier bier;
 
 
     public Recensie() {
@@ -28,11 +28,11 @@ public class Recensie {
         this.rating = rating;
     }
 
-    public Bier getBier() {
+    public ApiBier getBier() {
         return bier;
     }
 
-    public void setBier(Bier bier) {
+    public void setBier(ApiBier bier) {
         this.bier = bier;
     }
 }
