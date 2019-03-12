@@ -30,7 +30,7 @@ public class RecensieActivity extends AppCompatActivity implements DataLink, Ser
         setContentView(R.layout.activity_firebase);
         final String TAG = MainActivity.class.getSimpleName();
         apiBier = (ApiBier) getIntent().getSerializableExtra("ApiBier");
-        Log.d("key", apiBier.getName());
+        //Log.d("key", apiBier.getName());
 
 
         this.elementLinker();
