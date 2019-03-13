@@ -42,13 +42,6 @@ public class MainActivity extends AppCompatActivity implements DataLink, Seriali
             }
         });
 
-        Firebase.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("Firebasebutton ingedrukt", "start RecensieActivity");
-                startActivity(new Intent(MainActivity.this, RecensieActivity.class));
-            }
-        });
-
         Grafieken.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("Grafiekenbutton ingedrukt", "start GrafiekenActivity");
@@ -60,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements DataLink, Seriali
     @Override
     public void elementLinker() {
         Bierlist = (Button) findViewById(R.id.Listbutton);
-        Firebase = (Button) findViewById(R.id.Firebasebutton);
         Grafieken = (Button) findViewById(R.id.Grafiekbutton);
         Apikey  = (Button) findViewById(R.id.Apikey);
     }
