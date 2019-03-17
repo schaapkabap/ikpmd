@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.schaapkabap.biercollection.Models.ApiBier;
 import com.example.schaapkabap.biercollection.R;
-import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDetail;
 
 import java.io.IOException;
 import java.io.InputStream;

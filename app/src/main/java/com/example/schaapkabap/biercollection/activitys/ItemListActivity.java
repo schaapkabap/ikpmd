@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.schaapkabap.biercollection.Models.ApiBier;
 import com.example.schaapkabap.biercollection.R;
 
-import com.example.schaapkabap.biercollection.activitys.brouwerijen.BrouwerijDetail;
 import com.example.schaapkabap.biercollection.helpers.Api.ApiHandler;
 import com.example.schaapkabap.biercollection.helpers.SharePref;
 
